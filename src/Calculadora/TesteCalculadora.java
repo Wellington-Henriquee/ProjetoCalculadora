@@ -3,14 +3,28 @@ package Calculadora;
 public class TesteCalculadora {
 
     public static void main(String[] args) {
+        // Cria uma instância da classe Calculadora
         Calculadora calc = new Calculadora();
 
-        // Testes rápidos
-        calc.calc(2, 3, "+");   // esperado: 5
-        calc.calc(10, 4, "-");  // esperado: 6
-        calc.calc(3, 5, "*");   // esperado: 15
-        calc.calc(8, 2, "/");   // esperado: 4
-        calc.calc(8, 0, "/");   // divisao por zero
-        calc.calc(5, 5, "x");   // operação inválida
+        // Chamadas normais aos métodos da calculadora usando o método "calcular"
+        System.out.println(calc.calcular(2, 3,  "+"));  // Soma
+        System.out.println(calc.calcular( 10, 4,  "-")); // Subtração
+        System.out.println(calc.calcular( 3, 5,  "*"));  // Multiplicação
+        System.out.println(calc.calcular( 8, 2,  "/"));  // Divisão
+
+        // Teste de exceção: divisão por zero
+        try {
+            System.out.println(calc.calcular( 8, 0,  "/"));
+        } catch (IllegalArgumentException e) {
+            // Mostra a mensagem da exceção lançada pela Calculadora
+            System.out.println(e.getMessage());
+        }
+
+        // Teste de exceção: operador inválido
+        try {
+            System.out.println(calc.calcular( 5,  5,  "x")); // operador inexistente
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
     }
 }
